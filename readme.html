@@ -1,0 +1,118 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Notifications on Product Information Pages (Zen-Cart 1.5.0/1.5.1)</title>
+
+<style type="text/css">
+<!--
+a, a:active, a:visited {
+  color: #006666;
+  text-decoration: none
+}
+a:hover {
+    color:#00CC99;
+    text-decoration: underline;
+}
+BODY, P, H1, H2, H3, H4, H5, H6, LI, TD, DD, DT {
+  font-family: Verdana, AvantGarde, Tahoma, Arial, sans-serif;
+  font-size: 10pt;
+  color: black;
+  padding: 0px;
+  margin: 20px;
+}
+H1, H2, H3, H4 {
+  font-weight: bold
+}
+h1 {
+  font-size: 20px;
+}
+h2 {
+  font-size: 16px;
+  border-top: 1px solid #404040;
+}
+code {
+  padding-left: 25px;
+}
+ol li {
+  margin-left: 0;
+}
+.corefile {
+  color: red;
+}
+.removed {
+  text-decoration: line-through;
+}
+ol li, ul li {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+ul li ul {
+  padding-left: 0;
+}
+.changed {
+  color: blue;
+}
+.added {
+  color: green;
+}
+.back {
+  float: left;
+}
+.clearBoth {
+  clear: both;
+}
+.image {
+  margin: 0 10px 10px;
+}
+-->
+</style>
+</head>
+
+<body>
+<a name="top" id="top"></a>
+<h1>Notifications on Product Information Pages</h1>
+<h3>Version 1.0.0 by lat9</h3>
+<p>Current Support Thread at Zen Cart Forums: <a href="http://www.zen-cart.com/showthread.php?200923-Product-Notifications-on-product_info-Pages-Support-Thread">http://www.zen-cart.com/showthread.php?200923-Product-Notifications-on-product_info-Pages-Support-Thread</a></p>
+
+<h2>Version History:</h2>
+<ul>
+  <li>v1.0.0, 2012-10-07, Initial release.</li>
+</ul>
+
+<h2>What it does</h2>
+<img class="back image" src="screenshot.png" alt="Screenshot" />
+<p>This plugin adds the ability to sign up for product notifications on the product_info pages.  If your store doesn't use sideboxes, an out-of-the-box Zen Cart&reg; installation provides no way for a customer to receive product notifications without previously purchasing the product! The updated product_info display looks like the screenshot to the left.</p>
+
+<p>Just like the sidebox form of the product notification, a customer needs to be signed in to modify their product-notification settings.  The presence of the notification box is controlled by your admin's <em>Configuration-&gt;Customer Details-&gt;Customer Product Notification Status</em>; the value must be set to <strong>1</strong> for the box to appear.  If you want the notification box to show only on the product_info page and not in the sidebox, you'll need to use your admin's <em>Tools-&gt;Layout Boxes Controller</em> and turn <em>sideboxes/product_notifications.php</em> <strong>OFF</strong>.</p>
+
+<p>Optionally, if you want the product-notification text to be "generic", i.e. not include the current product's name, you can edit your template-override version of english.php (/includes/languages/YOUR_TEMPLATE/english.php), changing this section:</p>
+<pre>
+// notifications box text in sideboxes/products_notifications.php
+  define('BOX_HEADING_NOTIFICATIONS', 'Notifications');
+  define('BOX_NOTIFICATIONS_NOTIFY', 'Notify me of updates to <strong>%s</strong>');
+  define('BOX_NOTIFICATIONS_NOTIFY_REMOVE', 'Do not notify me of updates to <strong>%s</strong>');
+</pre>
+<p>to</p>
+<pre>
+// notifications box text in sideboxes/products_notifications.php
+  define('BOX_HEADING_NOTIFICATIONS', 'Notifications');
+  define('BOX_NOTIFICATIONS_NOTIFY', 'Notify me of updates to this product.');
+  define('BOX_NOTIFICATIONS_NOTIFY_REMOVE', 'Do not notify me of updates to this product.');
+</pre>
+<p>If your store uses sideboxes and you only want the notifications box to appear <strong>only</strong> in the sideboxes &hellip; <strong>don't</strong> install this plugin!</p>
+
+<h2 class="clearBoth">Installation</h2>
+<p>There are no core-file overwrites in this plugin, but you should <strong>always</strong> backup your cart&rsquo;s database and files prior to making any changes.</p>
+<ol>
+  <li>Copy the catalog files to your cart, after renaming the &quot;YOUR_TEMPLATE&quot; directories to match your custom template&rsquo;s name:<ol>
+    <li>/includes/templates/YOUR_TEMPLATE/common/tpl_box_notifications.php</li>
+    <li>/includes/templates/YOUR_TEMPLATE/css/product_info.css</li>
+    <li>/includes/templates/YOUR_TEMPLATE/templates/tpl_product_info_display.php</li>
+  </ol></li>
+</ol>
+
+<h2>Un-install</h2>
+<p>Replace the files you copied with their previous versions.</p>
+</body>
+</html>
