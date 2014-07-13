@@ -154,12 +154,18 @@ if (CUSTOMERS_APPROVAL == 3 and TEXT_LOGIN_FOR_PRICE_BUTTON_REPLACE_SHOWROOM == 
 ?>
 <!--eof Quantity Discounts table -->
 
+<?php
+//-bof-product_info_notifications-lat9 *** 1 of 2 ***
+?>
 <!--bof Product Info Notifications -->
 <?php
 $column_box_default = 'tpl_box_notifications.php';
 require(DIR_WS_MODULES . zen_get_module_directory('sideboxes/product_notifications.php'));
 ?>
 <!--eof Product Info Notifications -->
+<?php
+//-eof-product_info_notifications-lat9 *** 1 of 2 ***
+?>
 
 <!--bof Additional Product Images -->
 <?php
@@ -219,9 +225,20 @@ require(DIR_WS_MODULES . zen_get_module_directory('sideboxes/product_notificatio
 <?php
   if (zen_not_null($products_url)) {
     if ($flag_show_product_info_url == 1) {
+//-bof-product_info_notifications-lat9 *** 2 of 2 ***
+// -----
+// Note:  Zen Cart v1.5.3 removes action=url and replaces it with action=product -- check version.
+// -----
+      if (PROJECT_VERSION_MAJOR > '1' || PROJECT_VERSION_MINOR >= '5.3') {
+?>
+    <p id="productInfoLink" class="productGeneral centeredContent"><?php echo sprintf(TEXT_MORE_INFORMATION, zen_href_link(FILENAME_REDIRECT, 'action=product&products_id=' . zen_output_string_protected($_GET['products_id']), 'NONSSL', true, false)); ?></p>
+<?php
+      } else {
 ?>
     <p id="productInfoLink" class="productGeneral centeredContent"><?php echo sprintf(TEXT_MORE_INFORMATION, zen_href_link(FILENAME_REDIRECT, 'action=url&goto=' . urlencode($products_url), 'NONSSL', true, false)); ?></p>
 <?php
+      }
+//-eof-product_info_notifications-lat9 *** 2 of 2 ***
     } // $flag_show_product_info_url
   }
 ?>
